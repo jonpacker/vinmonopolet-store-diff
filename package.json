@@ -1,0 +1,26 @@
+{
+  "name": "vinmonopoletfeed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "just-diff": "^2.1.0",
+    "koa": "^2.4.1",
+    "koa-logger": "^3.1.0",
+    "koa-pug": "^3.0.0-2",
+    "koa-router": "^7.3.0",
+    "koa-static": "^4.0.1",
+    "md5": "^2.2.1",
+    "mz": "^2.7.0",
+    "nib": "^1.1.2",
+    "redis": "^2.8.0",
+    "stylus": "^0.54.5",
+    "vinmonopolet": "^3.1.2"
+  }
+}

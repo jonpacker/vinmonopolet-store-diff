@@ -1,0 +1,15 @@
+html {
+  padding: 5vh 10vw;
+}
+body {
+  font-family: "Hind";
+}
+.added li {
+  color: #24793c;
+}
+.removed li {
+  color: #eb585c;
+}
+a {
+  color: inherit;
+}

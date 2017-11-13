@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 Recent changes
+  each diff in diffs
+    h2= diff.seen
+    if diff.added.length > 0
+      h3 Added
+      ul.added
+        each add in diff.added
+          li
+            a(href=`https://vinmonopolet.no/_/p/${add.value.code}`)
+                | +#{add.value.stock} #{add.value.brewery} - #{add.value.name} (#{add.value.price}kr)
+    if diff.removed.length > 0
+      h3 Removed
+      ul.removed
+        each remove in diff.removed
+          li -#{remove.value.brewery} - #{remove.value.name}
