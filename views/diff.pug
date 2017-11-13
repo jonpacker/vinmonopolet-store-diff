@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1 Recent changes
+  h1 Recent stock changes at #{store}
   each diff in diffs
     h2= diff.seen
     if diff.added.length > 0

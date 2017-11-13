@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.5.1",
+    "feed": "^1.1.0",
     "just-diff": "^2.1.0",
     "koa": "^2.4.1",
     "koa-logger": "^3.1.0",

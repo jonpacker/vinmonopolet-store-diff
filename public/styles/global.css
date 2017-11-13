@@ -1,5 +1,6 @@
 html {
   padding: 5vh 10vw;
+  background: url("/img/sakura.png") repeat;
 }
 body {
   font-family: "Hind";
