@@ -10,9 +10,10 @@ block content
         each add in diff.added
           li
             a(href=`https://vinmonopolet.no/_/p/${add.value.code}`)
-                | +#{add.value.stock} #{add.value.brewery} - #{add.value.name} (#{add.value.price}kr)
+              | +#{add.value.stock} #{add.value.brewery} - #{add.value.name} (#{add.value.price}kr)
     if diff.removed.length > 0
       h3 Removed
       ul.removed
         each remove in diff.removed
-          li -#{remove.value.brewery} - #{remove.value.name}
+          a(href=`https://vinmonopolet.no/_/p/${remove.value.code}`)
+            li -#{remove.value.brewery} - #{remove.value.name}

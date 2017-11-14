@@ -1,22 +1,40 @@
 const getBeerDiff = require('../lib/get_beer_diff');
 const Feed = require('feed');
+const diffBeerList = require('../lib/diff_beer_list');
+
+const AVAILABLE_STORES = {
+  '121': 'Bergen, Bergen Storsenter'
+}
 
 module.exports = app => {
-  app.router.get('/121', async ctx => {
-    ctx.state.store = "Bergen, Bergen Storsenter";
+  app.router.get('/:store/run', async ctx => {
+    ctx.state.store = AVAILABLE_STORES[ctx.params.store];
+    const diff = await diffBeerList(app, ctx.state.store)
+    if (diff.length == 0) {
+      ctx.body = `${new Date().toString()}: No changes found`;
+    } else {
+      const removes = diff.filter(({op}) => op == 'remove').length;
+      const adds = diff.filter(({op}) => op == 'add').length;
+      ctx.body = `${new Date().toString()}: Changes found: ${adds} added, ${removes} removed`;
+    }
+  });
+  
+  app.router.get('/:store', async ctx => {
+    ctx.state.store = AVAILABLE_STORES[ctx.params.store];
     ctx.state.diffs = await getBeerDiff(app, ctx.state.store);
     ctx.render('diff');
   });
   
-  app.router.get('/121.xml', async ctx => {
-    const diffs = await getBeerDiff(app, "Bergen, Bergen Storsenter");
+  app.router.get('/:store/feed.xml', async ctx => {
+    const store = AVAILABLE_STORES[ctx.params.store];
+    const diffs = await getBeerDiff(app, store);
     let feed = new Feed({
-      title: 'Bergen, Bergen Storsenter New Items',
-      description: 'New beers at Bergen Storsenter',
-      id: 'http://vpdiff.jonpacker.com/121',
-      link: 'http://vpdiff.jonpacker.com/121',
+      title: `${store} New Beers`,
+      description: `${store} New Beers`,
+      id: `http://vpdiff.jonpacker.com/${ctx.params.store}`,
+      link: `http://vpdiff.jonpacker.com/${ctx.params.store}`,
       feedLinks: {
-        atom: 'http://vpdiff.jonpacker.com/121.xml',
+        atom: `http://vpdiff.jonpacker.com/${ctx.params.store}/feed.xml`,
       },
       author: {
         name: 'Jon Packer',

@@ -16,6 +16,8 @@ const pug = new Pug({
   }
 });
 
+app.storeDir = require('minimist')(process.argv.slice(2))['store-dir'];
+
 require('./routes/diff')(app);
 
 if (dev) app.use(require('koa-logger')());

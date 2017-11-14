@@ -18,9 +18,11 @@
     "koa-router": "^7.3.0",
     "koa-static": "^4.0.1",
     "md5": "^2.2.1",
+    "minimist": "^1.2.0",
     "mz": "^2.7.0",
     "nib": "^1.1.2",
     "redis": "^2.8.0",
+    "request-promise-native": "^1.0.5",
     "stylus": "^0.54.5",
     "vinmonopolet": "^3.1.2"
   }
