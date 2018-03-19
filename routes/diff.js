@@ -46,7 +46,7 @@ const AVAILABLE_STORES = {
     productType: 'BEER'
   }, 
   'molde': {
-    catalogId: 'vp_langnes',
+    catalogId: 'vp_molde',
     storeName: 'Molde',
     displayName: 'Vinmonopolet Molde',
     module: 'vinmonopolet',
