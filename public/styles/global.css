@@ -38,6 +38,7 @@ h1 {
 @media (max-width: 768px) {
   h1 {
     padding: 0 4vw;
+    font-size: 0.36rem;
   }
 }
 .back-to-index {
