@@ -20,5 +20,5 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN npm install
-EXPOSE 10005
+EXPOSE 10005 10004
 CMD /usr/src/app/start.sh
