@@ -1,19 +1,24 @@
 extends layout
 
 block content
-  h1 Recent stock changes at #{storeSettings.displayName}
+  h1 Lagerendringer hos #{storeSettings.displayName}
   each diff in diffs
-    h2= diff.seen
-    if diff.added.length > 0
-      h3 Added
-      ul.added
-        each add in diff.added
-          li
-            a(href=add.value.link)
-              | +#{add.value.name} (#{add.value.price})
-    if diff.removed.length > 0
-      h3 Removed
-      ul.removed
-        each remove in diff.removed
-          a(href=remove.value.link)
-            li -#{remove.value.name}
+    h2= moment(diff.seen).format("dddd, Do MMM YYYY (H:mm)")
+    .changeset
+      if diff.added.length > 0
+        h3 Added
+        ul.added
+          each add in diff.added
+            li.product
+              a(href=add.value.link)
+                .stock-count= add.value.stock
+                .product-name= add.value.name
+                .product-price= add.value.price
+      if diff.removed.length > 0
+        h3 Removed
+        ul.removed
+          each remove in diff.removed
+            li.product 
+              a(href=remove.value.link)
+                .product-name #{remove.value.name}
+            

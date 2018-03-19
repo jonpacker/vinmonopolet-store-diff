@@ -2,6 +2,8 @@ const Koa = require('koa');
 const Pug = require('koa-pug');
 const Router = require('koa-router');
 const redis = require('./lib/redis')();
+const moment = require('moment');
+moment.locale('nb');
 const dev = process.env.NODE_ENV == 'development';
 
 var app = new Koa();
@@ -12,7 +14,8 @@ const pug = new Pug({
   debug: dev,
   noCache: dev,
   locals: {
-    siteTitle: 'Vinmonopolet Differ'
+    siteTitle: 'Vinmonopolet Differ',
+    moment
   }
 });
 
