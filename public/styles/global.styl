@@ -202,12 +202,55 @@ h1
     
 
 .attr
-  text-align: right
   color: cs_mid
   font-family: "Work Sans"
   font-weight: 700
   font-size: 0.12rem
   text-transform: uppercase
+  margin-top: 1rem
   
 a
   color: inherit
+  
+.index
+  h1
+    margin-bottom: 0rem
+  h2
+    font-family: "Work Sans"
+    font-weight: 700
+    font-size: 0.16rem
+    color: cs_punch
+    text-transform: uppercase
+    margin: .1rem var(--box-pad) 0.5rem
+    padding: 0 0 .2rem
+    border-bottom: 1px solid cs_punch
+      
+  .stores
+    padding: 0 var(--box-pad)
+    display: flex
+    flex-wrap: wrap
+      
+  a.store
+    display: block
+    font-size: 0.24rem
+    text-decoration: none
+    color: cs_pale
+    background-color: cs_blue
+    font-family: "Playfair Display"
+    padding: 0.12rem 0.28rem
+    margin: 0 0.12rem 0.12rem 0
+    
+    &:before
+      content: ''
+      display: inline-block
+      background-image: url(/img/vp_pale.svg)
+      width: .34rem
+      height: .34rem
+      vertical-align: middle
+      margin-right: .12rem
+      margin-bottom: .02rem
+      
+      
+  & + .attr
+    margin: 1rem var(--box-pad) 0
+    

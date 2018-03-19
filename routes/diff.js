@@ -82,23 +82,12 @@ const beerStores = [
   'kvadrat',
   'langnes',
   'moa',
-  'bankkvartalet'
+  'bankkvartalet',
+  'molde'
 ];
 
 module.exports = (app, privateApp) => {
-  privateApp.router.get('/diff/:store/run', async ctx => {
-    ctx.state.store = AVAILABLE_STORES[ctx.params.store];
-    const diff = await runDiff(app, ctx.state.store)
-    if (diff.length == 0) {
-      ctx.body = `${new Date().toString()}: No changes found`;
-    } else {
-      const removes = diff.filter(({op}) => op == 'remove').length;
-      const adds = diff.filter(({op}) => op == 'add').length;
-      ctx.body = `${new Date().toString()}: Changes found: ${adds} added, ${removes} removed`;
-    }
-  });
-  
-  privateApp.router.get('/diff/beerStores/run', async ctx => {
+  privateApp.router.get('/diff/run_all', async ctx => {
     const diffTasks = beerStores.map(store => runDiff(app, AVAILABLE_STORES[store]));
     const diffs = await Promise.all(diffTasks);
     const statusLog = diffs.map((diff, i) => {
@@ -111,6 +100,22 @@ module.exports = (app, privateApp) => {
       }
     });
     ctx.body = statusLog.join('\n');
+  });
+  
+  privateApp.router.get('/diff/:store/run', async ctx => {
+    ctx.state.store = AVAILABLE_STORES[ctx.params.store];
+    const diff = await runDiff(app, ctx.state.store)
+    if (diff.length == 0) {
+      ctx.body = `${new Date().toString()}: No changes found`;
+    } else {
+      const removes = diff.filter(({op}) => op == 'remove').length;
+      const adds = diff.filter(({op}) => op == 'add').length;
+      ctx.body = `${new Date().toString()}: Changes found: ${adds} added, ${removes} removed`;
+    }
+  });
+  
+  app.router.get('/', async ctx => {
+    ctx.render('index', {beerStores, AVAILABLE_STORES});
   });
   
   app.router.get('/diff/:store', async ctx => {

@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .index
+    h1 VinmonopoletDiff
+    h2 Sjekk lagerendringer hos ditt lokale ølpolet.
+    .stores
+      each storeKey in beerStores
+        - const store = AVAILABLE_STORES[storeKey];
+        a.store(href=`/diff/${storeKey}`)= store.storeName
