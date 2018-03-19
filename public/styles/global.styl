@@ -54,9 +54,16 @@ h1
   color: cs_blue
   padding: 0 var(--box-pad)
   margin-bottom: 0.6rem
+  margin-top: 0.1rem
   
   @media (max-width: 768px)
     padding: 0 4vw
+    
+.back-to-index
+  font-family: "Playfair Display"
+  text-decoration: underline
+  padding: 0 var(--box-pad)
+  color: cs_blue
   
 .changeset
   display: grid
@@ -207,7 +214,7 @@ h1
   font-weight: 700
   font-size: 0.12rem
   text-transform: uppercase
-  margin-top: 1rem
+  margin: 1rem var(--box-pad) 0
   
 a
   color: inherit
@@ -229,6 +236,11 @@ a
     padding: 0 var(--box-pad)
     display: flex
     flex-wrap: wrap
+    
+    &:hover a.store
+      opacity: 0.85
+      &:hover
+        opacity: 1
       
   a.store
     display: block
@@ -239,6 +251,7 @@ a
     font-family: "Playfair Display"
     padding: 0.12rem 0.28rem
     margin: 0 0.12rem 0.12rem 0
+    transition: opacity 0.2s ease-out
     
     &:before
       content: ''
@@ -250,7 +263,9 @@ a
       margin-right: .12rem
       margin-bottom: .02rem
       
+    &:hover
+      background-color: cs_punch
+      outline: 0.05rem cs_punch solid
       
-  & + .attr
-    margin: 1rem var(--box-pad) 0
+    
     

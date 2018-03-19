@@ -33,11 +33,18 @@ h1 {
   color: #5c5e73;
   padding: 0 var(--box-pad);
   margin-bottom: 0.6rem;
+  margin-top: 0.1rem;
 }
 @media (max-width: 768px) {
   h1 {
     padding: 0 4vw;
   }
+}
+.back-to-index {
+  font-family: "Playfair Display";
+  text-decoration: underline;
+  padding: 0 var(--box-pad);
+  color: #5c5e73;
 }
 .changeset {
   display: grid;
@@ -210,7 +217,7 @@ h1 {
   font-weight: 700;
   font-size: 0.12rem;
   text-transform: uppercase;
-  margin-top: 1rem;
+  margin: 1rem var(--box-pad) 0;
 }
 a {
   color: inherit;
@@ -243,6 +250,16 @@ a {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
+.index .stores:hover a.store {
+  opacity: 0.85;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+  filter: alpha(opacity=85);
+}
+.index .stores:hover a.store:hover {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
 .index a.store {
   display: block;
   font-size: 0.24rem;
@@ -252,6 +269,11 @@ a {
   font-family: "Playfair Display";
   padding: 0.12rem 0.28rem;
   margin: 0 0.12rem 0.12rem 0;
+  -webkit-transition: opacity 0.2s ease-out;
+  -moz-transition: opacity 0.2s ease-out;
+  -o-transition: opacity 0.2s ease-out;
+  -ms-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
 }
 .index a.store:before {
   content: '';
@@ -263,6 +285,7 @@ a {
   margin-right: 0.12rem;
   margin-bottom: 0.02rem;
 }
-.index + .attr {
-  margin: 1rem var(--box-pad) 0;
+.index a.store:hover {
+  background-color: #f55c0b;
+  outline: 0.05rem #f55c0b solid;
 }

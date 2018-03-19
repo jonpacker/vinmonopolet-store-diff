@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  a.back-to-index(href='/') ↩ Tilbake
   h1 Lagerendringer hos #{storeSettings.displayName}
   each diff in diffs
     .changeset(class=!diff.removed.length ? "add-only" : "", class=!diff.added.length ? "remove-only" : "")
