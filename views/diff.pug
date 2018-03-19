@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1 Recent stock changes at #{store}
+  h1 Recent stock changes at #{storeSettings.displayName}
   each diff in diffs
     h2= diff.seen
     if diff.added.length > 0
@@ -9,11 +9,11 @@ block content
       ul.added
         each add in diff.added
           li
-            a(href=`https://vinmonopolet.no/_/p/${add.value.code}`)
-              | +#{add.value.stock} #{add.value.brewery} - #{add.value.name} (#{add.value.price}kr)
+            a(href=add.value.link)
+              | +#{add.value.name} (#{add.value.price})
     if diff.removed.length > 0
       h3 Removed
       ul.removed
         each remove in diff.removed
-          a(href=`https://vinmonopolet.no/_/p/${remove.value.code}`)
-            li -#{remove.value.brewery} - #{remove.value.name}
+          a(href=remove.value.link)
+            li -#{remove.value.name}
