@@ -10,6 +10,62 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet', 
     productType: 'BEER' 
   },
+  'akerbrygge': {
+    catalogId: 'vp_akerbrygge',
+    storeName: 'Oslo, Aker Brygge',
+    displayName: 'Vinmonopolet Aker Brygge',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  }, 
+  'kvadrat': {
+    catalogId: 'vp_kvadrat',
+    storeName: 'Sandnes, Kvadrat',
+    displayName: 'Vinmonopolet Sandnes, Kvadrat',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  }, 
+  'bankkvartalet': {
+    catalogId: 'vp_bankkvartalet',
+    storeName: 'Trondheim, Bankkvartalet',
+    displayName: 'Vinmonopolet Bankkvartalet',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  }, 
+  'moa': {
+    catalogId: 'vp_moa',
+    storeName: 'Ålesund, Moa',
+    displayName: 'Vinmonopolet Ålesund, Moa',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  }, 
+  'langnes': {
+    catalogId: 'vp_langnes',
+    storeName: 'Tromsø, Langnes',
+    displayName: 'Vinmonopolet Tromsø, Langnes',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  }, 
+  'molde': {
+    catalogId: 'vp_langnes',
+    storeName: 'Molde',
+    displayName: 'Vinmonopolet Molde',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  }, 
+  'lillemarkens': {
+    catalogId: 'vp_lillemarkens',
+    storeName: 'Kristiansand, Lillemarkens',
+    displayName: 'Vinmonopolet Kristiansand, Lillemarkens',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  }, 
+  'bodo': {
+    catalogId: 'vp_bodo',
+    storeName: 'Bodø, City Nord',
+    displayName: 'Vinmonopolet Bodø, City Nord',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  }, 
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -18,8 +74,19 @@ const AVAILABLE_STORES = {
   }
 }
 
-module.exports = app => {
-  app.router.get('/diff/:store/run', async ctx => {
+const beerStores = [
+  'bystasjonen',
+  'akerbrygge',
+  'bodo',
+  'lillemarkens',
+  'kvadrat',
+  'langnes',
+  'moa',
+  'bankkvartalet'
+];
+
+module.exports = (app, privateApp) => {
+  privateApp.router.get('/diff/:store/run', async ctx => {
     ctx.state.store = AVAILABLE_STORES[ctx.params.store];
     const diff = await runDiff(app, ctx.state.store)
     if (diff.length == 0) {
@@ -29,6 +96,21 @@ module.exports = app => {
       const adds = diff.filter(({op}) => op == 'add').length;
       ctx.body = `${new Date().toString()}: Changes found: ${adds} added, ${removes} removed`;
     }
+  });
+  
+  privateApp.router.get('/diff/beerStores/run', async ctx => {
+    const diffTasks = beerStores.map(store => runDiff(app, AVAILABLE_STORES[store]));
+    const diffs = await Promise.all(diffTasks);
+    const statusLog = diffs.map((diff, i) => {
+      if (diff.length == 0) {
+        return `${beerStores[i]} - ${new Date().toString()}: No changes found`;
+      } else {
+        const removes = diff.filter(({op}) => op == 'remove').length;
+        const adds = diff.filter(({op}) => op == 'add').length;
+        return `${beerStores[i]} - ${new Date().toString()}: Changes found: ${adds} added, ${removes} removed`;
+      }
+    });
+    ctx.body = statusLog.join('\n');
   });
   
   app.router.get('/diff/:store', async ctx => {
