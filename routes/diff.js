@@ -1,15 +1,27 @@
-const getBeerDiff = require('../lib/get_beer_diff');
+const getDiff = require('../lib/get_product_diff');
 const Feed = require('feed');
-const diffBeerList = require('../lib/diff_beer_list');
+const {runDiff} = require('../lib/diff_product_list');
 
 const AVAILABLE_STORES = {
-  '121': 'Bergen, Bergen Storsenter'
+  'bystasjonen': { 
+    catalogId: 'vp_bystasjonen', 
+    storeName: 'Bergen, Bergen Storsenter', 
+    displayName: 'Vinmonopolet Bystasjonen',
+    module: 'vinmonopolet', 
+    productType: 'BEER' 
+  },
+  'dmbourbon': { 
+    catalogId: 'dm_bourbon',
+    displayName: "Dan Murphy's Online Bourbon Selection",
+    module: 'danmurphys', 
+    productType: 'bourbon' 
+  }
 }
 
 module.exports = app => {
-  app.router.get('/:store/run', async ctx => {
+  app.router.get('/diff/:store/run', async ctx => {
     ctx.state.store = AVAILABLE_STORES[ctx.params.store];
-    const diff = await diffBeerList(app, ctx.state.store)
+    const diff = await runDiff(app, ctx.state.store)
     if (diff.length == 0) {
       ctx.body = `${new Date().toString()}: No changes found`;
     } else {
@@ -19,18 +31,18 @@ module.exports = app => {
     }
   });
   
-  app.router.get('/:store', async ctx => {
-    ctx.state.store = AVAILABLE_STORES[ctx.params.store];
-    ctx.state.diffs = await getBeerDiff(app, ctx.state.store);
+  app.router.get('/diff/:store', async ctx => {
+    ctx.state.storeSettings = AVAILABLE_STORES[ctx.params.store];
+    ctx.state.diffs = await getDiff(app, ctx.state.storeSettings.catalogId);
     ctx.render('diff');
   });
   
-  app.router.get('/:store/feed.xml', async ctx => {
-    const store = AVAILABLE_STORES[ctx.params.store];
-    const diffs = await getBeerDiff(app, store);
+  app.router.get('/diff/:store/feed.xml', async ctx => {
+    ctx.state.storeSettings = AVAILABLE_STORES[ctx.params.store];
+    const diffs = await getDiff(app, ctx.state.storeSettings.catalogId);
     let feed = new Feed({
-      title: `${store} New Beers`,
-      description: `${store} New Beers`,
+      title: `${store} Updates`,
+      description: `${store} Updates`,
       id: `http://vpdiff.jonpacker.com/${ctx.params.store}`,
       link: `http://vpdiff.jonpacker.com/${ctx.params.store}`,
       feedLinks: {
@@ -44,8 +56,7 @@ module.exports = app => {
     })
     diffs.forEach(diff => {
       diff.added.forEach(({value}) => {
-        const beer = `${value.brewery} - ${value.name}`;
-        const story = `+${value.stock} ${beer} ${value.price}kr`;
+        const story = `+${value.name} - ${value.price}`;
         feed.addItem({
           title: beer,
           id: `${value.code}_${diff.seen.valueOf()}`,

@@ -1,16 +1,1 @@
-html {
-  padding: 5vh 10vw;
-  background: url("/img/sakura.png") repeat;
-}
-body {
-  font-family: "Hind";
-}
-.added li {
-  color: #24793c;
-}
-.removed li {
-  color: #eb585c;
-}
-a {
-  color: inherit;
-}
+html{padding:5vh 10vw;background:url("/img/sakura.png") repeat}body{font-family:"Hind"}.added li{color:#24793c}.removed li{color:#eb585c}a{color:inherit}
