@@ -5,10 +5,13 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title= locals.siteTitle + (locals.currentPageTitle ? " - " + currentPageTitle : "")
-    link(type="text/css", rel="stylesheet", href="https://fonts.googleapis.com/css?family=Work+Sans:700|Playfair+Display:700|Archivo+Narrow:400,600")
+    link(type="text/css", rel="stylesheet", href="https://fonts.googleapis.com/css?family=Work+Sans:700|Playfair+Display:400|Archivo+Narrow:400,600")
     link(type="text/css", rel="stylesheet", href="/styles/global.css")
     block styles
   body
     .container
       block content
     block scripts
+    .attr Laget av 
+      a(href="http://jonpacker.com") Jon Packer
+      | , 2018.

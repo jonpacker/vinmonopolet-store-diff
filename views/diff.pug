@@ -3,10 +3,11 @@ extends layout
 block content
   h1 Lagerendringer hos #{storeSettings.displayName}
   each diff in diffs
-    h2= moment(diff.seen).format("dddd, Do MMM YYYY (H:mm)")
-    .changeset
+    .changeset(class=!diff.removed.length ? "add-only" : "", class=!diff.added.length ? "remove-only" : "")
+      - const seen = moment(diff.seen)
+      h2 for #{moment.duration(seen - moment()).humanize(true)} (#{seen.format("H:mm, dddd, Do MMM YYYY")})
       if diff.added.length > 0
-        h3 Added
+        h3.added-header Added (#{diff.added.length})
         ul.added
           each add in diff.added
             li.product
@@ -15,7 +16,7 @@ block content
                 .product-name= add.value.name
                 .product-price= add.value.price
       if diff.removed.length > 0
-        h3 Removed
+        h3.removed-header Removed (#{diff.removed.length})
         ul.removed
           each remove in diff.removed
             li.product 
