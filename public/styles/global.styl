@@ -226,16 +226,45 @@ a
   
 .index
   h1
-    margin-bottom: 0rem
+    margin-bottom: 0.4rem
+    margin-top: 0.4rem
+    position: relative
+    transform: skewY(-5deg)
+    transform-origin: 0 100%
+    z-index: 2
+    &:before
+    &:after
+      content: ''
+      position: absolute
+      z-index: -1
+      display: block
+      width: 100vw
+      left: 50%
+      margin-left: -50vw
+    &:before
+      background-color: lighten(cs_punch, 40%)
+      height: 200%
+      top: -50%
+    &:after
+      height: 600%
+      top: -650%
+      background-image: url(/img/vp.svg)
+      background-size: 50%
+      background-position: left 6vw bottom -20vw
+      background-repeat: no-repeat
+      opacity: 0.2
+     
   h2
     font-family: "Work Sans"
     font-weight: 700
     font-size: 0.16rem
-    color: cs_punch
+    color: cs_blue
     text-transform: uppercase
     margin: .1rem var(--box-pad) 0.5rem
     padding: 0 0 .2rem
     border-bottom: 1px solid cs_punch
+    position: relative
+    z-index: 5
       
   .stores
     padding: 0 var(--box-pad)
