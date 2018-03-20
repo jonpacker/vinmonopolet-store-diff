@@ -114,8 +114,25 @@ module.exports = (app, privateApp) => {
     }
   });
   
+  let recentUpdateCache = {};
+  let recentUpdateCacheTime = 0;
+  
+  const getRecentBeerUpdates = async () => {
+    if (Date.now() - recentUpdateCacheTime < 1000 * 60) {
+      return recentUpdateCache;
+    }
+    
+    const fetchDiffs = beerStores.map(store => getDiff(app, AVAILABLE_STORES[store].catalogId, 1));
+    const diffs = await Promise.all(fetchDiffs);
+    diffs.forEach((diff, i) => {
+      recentUpdateCache[beerStores[i]] = diff[0];
+    });
+    recentUpdateCacheTime = Date.now();
+    return recentUpdateCache;
+  }
+  
   app.router.get('/', async ctx => {
-    ctx.render('index', {beerStores, AVAILABLE_STORES});
+    ctx.render('index', {beerStores, AVAILABLE_STORES, recentUpdates: await getRecentBeerUpdates()});
   });
   
   app.router.get('/diff/:store', async ctx => {

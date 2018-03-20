@@ -8,3 +8,9 @@ block content
       each storeKey in beerStores
         - const store = AVAILABLE_STORES[storeKey];
         a.store(href=`/diff/${storeKey}`)= store.storeName
+          if recentUpdates[storeKey]
+            - const diff = recentUpdates[storeKey]
+            if diff.added.length > 0
+              .recently-added= diff.added.length
+            if diff.removed.length > 0
+              .recently-removed= diff.removed.length
