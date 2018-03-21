@@ -132,7 +132,7 @@ module.exports = (app, privateApp) => {
   }
   
   app.router.get('/', async ctx => {
-    ctx.render('index', {beerStores, AVAILABLE_STORES, recentUpdates: await getRecentBeerUpdates()});
+    ctx.render('index', {beerStores, AVAILABLE_STORES});
   });
   
   app.router.get('/diff/:store', async ctx => {
