@@ -141,10 +141,10 @@ module.exports = (app, privateApp) => {
     ctx.render('diff');
   });
 
-  app.router.get('/diff/:store.json', async ctx => {
+  app.router.get('/diff/:store/json', async ctx => {
     const storeSettings = AVAILABLE_STORES[ctx.params.store];
     const diffs = await getDiff(app, storeSettings.catalogId);
-    ctx.json(diffs);
+    ctx.body = JSON.stringify(diffs);
   });
   
   app.router.get('/diff/:store/feed.xml', async ctx => {
