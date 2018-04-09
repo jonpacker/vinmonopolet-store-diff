@@ -160,7 +160,7 @@ h1
     text-decoration: none
     color: cs_darker
   .added .product a
-    grid-template-columns: 0.25rem auto min-content
+    grid-template-columns: 0.25rem auto minmax(min-content, 1.5fr) minmax(min-content, 1fr)
   .removed .product a
     grid-template-columns: 1fr
     
@@ -171,9 +171,14 @@ h1
       
   .product-price
     align-self: center
+    justify-self: right
+    grid-column: 3/5
     &:after
       content: "kr"
-      
+
+  .product-misc
+    justify-self: right
+
   @media (max-width: 1024px)
     grid-template-rows: 1rem 0.7rem min-content 0.7rem min-content
     grid-template-columns: 1fr

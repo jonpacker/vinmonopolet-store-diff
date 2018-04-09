@@ -15,7 +15,14 @@ block content
               a(href=add.value.link)
                 .stock-count= add.value.stock
                 .product-name= add.value.name
-                .product-price= add.value.price
+                if add.value.price
+                  .product-price= add.value.price
+                else if add.value.stockStatus || add.value.productCategory
+                  if add.value.stockStatus
+                    .product-misc #{add.value.stockStatus}  
+                  if add.value.productCategory
+                    .product-misc #{add.value.productCategory}  
+
       if diff.removed.length > 0
         h3.removed-header Gikk tom for #{diff.removed.length}
         ul.removed

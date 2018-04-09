@@ -71,6 +71,12 @@ const AVAILABLE_STORES = {
     displayName: "Dan Murphy's Online Bourbon Selection",
     module: 'danmurphys', 
     productType: 'bourbon' 
+  },
+  'vp_cat': {
+    catalogId: 'vp_beer_cat',
+    displayName: 'Vinmonopolet Fullstendig Ølutvalg',
+    module: 'vp_catalog_scrape',
+    runsLong: true
   }
 }
 
@@ -104,6 +110,11 @@ module.exports = (app, privateApp) => {
   
   privateApp.router.get('/diff/:store/run', async ctx => {
     ctx.state.store = AVAILABLE_STORES[ctx.params.store];
+    if (ctx.state.store.runsLong) {
+      runDiff(app, ctx.state.store);
+      ctx.body = `${new Date()}: Started job "${ctx.params.store}".`;
+      return
+    }
     const diff = await runDiff(app, ctx.state.store)
     if (diff.length == 0) {
       ctx.body = `${new Date().toString()}: No changes found`;
