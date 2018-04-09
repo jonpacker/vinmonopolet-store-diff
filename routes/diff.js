@@ -1,6 +1,7 @@
 const getDiff = require('../lib/get_product_diff');
 const Feed = require('feed');
 const {runDiff} = require('../lib/diff_product_list');
+const lrj = require('../lib/long_running_jobs');
 
 const AVAILABLE_STORES = {
   'bystasjonen': { 
@@ -112,7 +113,8 @@ module.exports = (app, privateApp) => {
     ctx.state.store = AVAILABLE_STORES[ctx.params.store];
     if (ctx.state.store.runsLong) {
       runDiff(app, ctx.state.store);
-      ctx.body = `${new Date()}: Started job "${ctx.params.store}".`;
+      const jobId = lrj.getLastRunJob();
+      ctx.body = `${new Date()}: Started job "${ctx.params.store}". Possible job ID: ${jobId}`;
       return
     }
     const diff = await runDiff(app, ctx.state.store)
@@ -122,6 +124,16 @@ module.exports = (app, privateApp) => {
       const removes = diff.filter(({op}) => op == 'remove').length;
       const adds = diff.filter(({op}) => op == 'add').length;
       ctx.body = `${new Date().toString()}: Changes found: ${adds} added, ${removes} removed`;
+    }
+  });
+
+  app.router.get('/diff/job/:jobid', ctx => {
+    let status;
+    try {
+      status = lrj.getJobStatus(ctx.params.jobid);
+      ctx.body = status
+    } catch (e) {
+      ctx.status = 404;
     }
   });
   
