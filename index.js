@@ -2,7 +2,7 @@ const Koa = require('koa');
 const Pug = require('koa-pug');
 const Router = require('koa-router');
 const redis = require('./lib/redis')();
-const moment = require('moment');
+const moment = require('moment-timezone');
 moment.locale('nb');
 const dev = process.env.NODE_ENV == 'development';
 

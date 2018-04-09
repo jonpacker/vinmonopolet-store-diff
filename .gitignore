@@ -1,3 +1,4 @@
 node_modules
 beer_list_*.json
+redis
 product_list_*.json
