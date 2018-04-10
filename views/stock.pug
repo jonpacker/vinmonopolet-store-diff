@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1 Lager hos #{storeSettings.displayName}
+  table.sortable
+    thead
+      tr
+        th Code
+        th Product Name
+        th Price
+        th Stock Status
+        th Product Category
+    tbody
+      - const prods = Object.values(stock);
+      each product in stock
+        tr
+          td= product.code
+          td 
+            a(href=`https://vinmonopolet.no/_/p/${product.code}`)= product.name
+          td= product.price
+          td= product.stockStatus || product.stock || '-'
+          td= product.productCategory || '-'
+
+    script(type="text/javascript", src="/js/sortable.js")
+

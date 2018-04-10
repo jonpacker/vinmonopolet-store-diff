@@ -1,4 +1,5 @@
 const getDiff = require('../lib/get_product_diff');
+const getStock = require('../lib/get_store_stock');
 const Feed = require('feed');
 const {runDiff} = require('../lib/diff_product_list');
 const lrj = require('../lib/long_running_jobs');
@@ -156,6 +157,12 @@ module.exports = (app, privateApp) => {
   
   app.router.get('/', async ctx => {
     ctx.render('index', {beerStores, AVAILABLE_STORES});
+  });
+
+  app.router.get('/stock/:store', async ctx => {
+    ctx.state.storeSettings = AVAILABLE_STORES[ctx.params.store];
+    ctx.state.stock = await getStock(app, ctx.state.storeSettings);
+    ctx.render('stock');
   });
   
   app.router.get('/diff/:store', async ctx => {
