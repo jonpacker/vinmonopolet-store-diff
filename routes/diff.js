@@ -164,6 +164,54 @@ module.exports = (app, privateApp) => {
     ctx.state.stock = await getStock(app, ctx.state.storeSettings);
     ctx.render('stock');
   });
+
+  app.router.post('/diff/:store/add_slack_webhook', async ctx => {
+    const body = await new Promise((resolve, reject) => {
+      let bodyString = '';
+      ctx.req.on('data', chunk => bodyString += chunk);
+      ctx.req.on('end', () => {
+        try {
+          resolve(JSON.parse(bodyString));
+        } catch (e) {
+          reject(e);
+        }
+      });
+    });
+    if (!body.hook || !body.key) {
+      ctx.status = 400;
+      ctx.json = true;
+      ctx.body = {error: 'please specify a "hook" property for the webhook and a "key" property for a reference key for deletion'};
+    }
+    const storeSettings = AVAILABLE_STORES[ctx.params.store];
+    if (!storeSettings) {
+      ctx.status = 404;
+      ctx.json = true;
+      ctx.body = {error: 'no such store: ' + ctx.params.store};
+    }
+    await app.redis.hmsetAsync(`vpdiff_slack_webhooks_${storeSettings.catalogId}`, body.key, body.hook);
+    ctx.status = 201;
+    ctx.body = "OK";
+  });
+
+  app.router.delete('/diff/:store/slack_webhooks/:key', async ctx => {
+    const storeSettings = AVAILABLE_STORES[ctx.params.store];
+    if (!storeSettings) {
+      ctx.status = 404;
+      ctx.json = true;
+      ctx.body = {error: 'no such store: ' + ctx.params.store};
+    }
+    ctx.body = await app.redis.hdelAsync(`vpdiff_slack_webhooks_${storeSettings.catalogId}`, ctx.params.key);
+  });
+
+  privateApp.router.get('/diff/:store/slack_webhooks', async ctx => {
+    const storeSettings = AVAILABLE_STORES[ctx.params.store];
+    if (!storeSettings) {
+      ctx.status = 404;
+      ctx.json = true;
+      ctx.body = {error: 'no such store: ' + ctx.params.store};
+    }
+    ctx.body = await app.redis.hkeysAsync(`vpdiff_slack_webhooks_${storeSettings.catalogId}`);
+  });
   
   app.router.get('/diff/:store', async ctx => {
     ctx.state.storeSettings = AVAILABLE_STORES[ctx.params.store];
