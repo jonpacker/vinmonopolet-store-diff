@@ -279,7 +279,8 @@ a {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
 }
-.index h2 {
+.index h2,
+.index h3 {
   font-family: "Work Sans";
   font-weight: 700;
   font-size: 0.16rem;
@@ -290,6 +291,17 @@ a {
   border-bottom: 1px solid #f55c0b;
   position: relative;
   z-index: 5;
+}
+.index h3 {
+  font-size: 0.12rem;
+  margin: 0 var(--box-pad) 0;
+  font-style: italic;
+  border-bottom: none;
+}
+.index hr {
+  margin: 0.3rem var(--box-pad) 0.2rem;
+  border-top: none;
+  border-bottom: 1px solid #f55c0b;
 }
 .index .stores {
   padding: 0 var(--box-pad);

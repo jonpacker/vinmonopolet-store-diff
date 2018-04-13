@@ -4,7 +4,14 @@ block content
   .index
     h1 VinmonopoletDiff
     h2 Sjekk lagerendringer hos ditt lokale ølpolet.
+    h3 Spesialbutikker for øl
     .stores
       each storeKey in beerStores
+        - const store = AVAILABLE_STORES[storeKey];
+        a.store(href=`/diff/${storeKey}`)= store.storeName
+    hr
+    h3 Andre butikker
+    .stores
+      each storeKey in otherStores
         - const store = AVAILABLE_STORES[storeKey];
         a.store(href=`/diff/${storeKey}`)= store.storeName

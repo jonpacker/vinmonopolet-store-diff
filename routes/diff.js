@@ -68,6 +68,20 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   }, 
+  'linderud': {
+    catalogId: 'vp_linderud',
+    storeName: 'Oslo, Linderud',
+    displayName: 'Vinmonopolet Oslo, Linderud',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'os': {
+    catalogId: 'vp_os',
+    storeName: 'Os',
+    displayName: 'Vinmonopolet Os',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -94,17 +108,23 @@ const beerStores = [
   'molde'
 ];
 
+const otherStores = [
+  'os',
+  'linderud'
+]
+
 module.exports = (app, privateApp) => {
   privateApp.router.get('/diff/run_all', async ctx => {
-    const diffTasks = beerStores.map(store => runDiff(app, AVAILABLE_STORES[store]));
+    const allStores = beerStores.concat(otherStores);
+    const diffTasks = allStores.map(store => runDiff(app, AVAILABLE_STORES[store]));
     const diffs = await Promise.all(diffTasks);
     const statusLog = diffs.map((diff, i) => {
       if (diff.length == 0) {
-        return `${beerStores[i]} - ${new Date().toString()}: No changes found`;
+        return `${allStores[i]} - ${new Date().toString()}: No changes found`;
       } else {
         const removes = diff.filter(({op}) => op == 'remove').length;
         const adds = diff.filter(({op}) => op == 'add').length;
-        return `${beerStores[i]} - ${new Date().toString()}: Changes found: ${adds} added, ${removes} removed`;
+        return `${allStores[i]} - ${new Date().toString()}: Changes found: ${adds} added, ${removes} removed`;
       }
     });
     ctx.body = statusLog.join('\n');
@@ -156,7 +176,7 @@ module.exports = (app, privateApp) => {
   }
   
   app.router.get('/', async ctx => {
-    ctx.render('index', {beerStores, AVAILABLE_STORES});
+    ctx.render('index', {beerStores, otherStores, AVAILABLE_STORES});
   });
 
   app.router.get('/stock/:store', async ctx => {
