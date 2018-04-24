@@ -82,6 +82,13 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+  'asane': {
+    catalogId: 'vp_asane',
+    storeName: 'Bergen, Åsane',
+    displayName: 'Vinmonopolet Åsane',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -110,7 +117,8 @@ const beerStores = [
 
 const otherStores = [
   'os',
-  'linderud'
+  'linderud',
+  'asane'
 ]
 
 module.exports = (app, privateApp) => {
