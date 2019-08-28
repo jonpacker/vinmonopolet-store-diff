@@ -96,6 +96,13 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+  'oslocity': {
+    catalogId: 'vp_oslocity',
+    storeName: 'Oslo, Oslo City',
+    displayName: 'Vinmonopolet Oslo City',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -119,14 +126,15 @@ const beerStores = [
   'langnes',
   'moa',
   'bankkvartalet',
-  'molde',
-  'oslocc'
+  'molde'
 ];
 
 const otherStores = [
   'os',
   'linderud',
-  'asane'
+  'asane',
+  'oslocc',
+  'oslocity
 ]
 
 module.exports = (app, privateApp) => {
