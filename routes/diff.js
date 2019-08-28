@@ -89,6 +89,13 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+  'oslocc': {
+    catalogId: 'vp_oslocc',
+    storeName: 'Oslo, CC Vest',
+    displayName: 'Vinmonopolet Oslo, CC Vest',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -112,7 +119,8 @@ const beerStores = [
   'langnes',
   'moa',
   'bankkvartalet',
-  'molde'
+  'molde',
+  'oslocc'
 ];
 
 const otherStores = [
