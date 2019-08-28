@@ -134,7 +134,7 @@ const otherStores = [
   'linderud',
   'asane',
   'oslocc',
-  'oslocity
+  'oslocity'
 ]
 
 module.exports = (app, privateApp) => {
