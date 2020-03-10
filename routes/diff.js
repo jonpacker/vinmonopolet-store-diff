@@ -103,6 +103,29 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+<<<<<<< HEAD
+=======
+  'oslostoro': {
+    catalogId: 'vp_oslostoro',
+    storeName: 'Oslo, Storo',
+    displayName: 'Vinmonopolet Oslo, Storo',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'sletten': {
+    catalogId: 'vp_sletten',
+    storeName: 'Bergen, Sletten',
+    displayName: 'Bergen, Sletten',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'fyllingsdalen': {
+    catalogId: 'vp_fyllingsdalen',
+    storeName: 'Bergen, Fyllingsdalen',
+    displayName: 'Bergen, Fyllingsdalen',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -134,6 +157,9 @@ const otherStores = [
   'linderud',
   'asane',
   'oslocc',
+  'sletten',
+  'fyllingsdalen',
+  'oslostoro',
   'oslocity'
 ]
 
