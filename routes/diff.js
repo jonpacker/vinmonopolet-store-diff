@@ -103,8 +103,6 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
-<<<<<<< HEAD
-=======
   'oslostoro': {
     catalogId: 'vp_oslostoro',
     storeName: 'Oslo, Storo',
