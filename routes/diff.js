@@ -117,6 +117,13 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+  'tonsberg': {
+    catalogId: 'vp_tonsberg',
+    storeName: 'Tønsberg',
+    displayName: 'Tønsberg',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'fyllingsdalen': {
     catalogId: 'vp_fyllingsdalen',
     storeName: 'Bergen, Fyllingsdalen',
@@ -158,7 +165,8 @@ const otherStores = [
   'sletten',
   'fyllingsdalen',
   'oslostoro',
-  'oslocity'
+  'oslocity',
+  'tonsberg'
 ]
 
 module.exports = (app, privateApp) => {
