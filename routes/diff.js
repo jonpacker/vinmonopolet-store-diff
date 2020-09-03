@@ -131,6 +131,13 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+  'valken': {
+    catalogId: 'vp_valken',
+    storeName: 'Bergen, Valkendorfsgt.',
+    displayName: 'Bergen, Valkendorfsgt.',
+    module: 'vinmonopolet',
+    productType: 'LIQUOR'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
