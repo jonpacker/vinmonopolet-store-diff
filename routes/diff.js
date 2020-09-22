@@ -138,6 +138,55 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'LIQUOR'
   },
+  'sarpsborg': {
+    catalogId: 'vp_sarpsborg',
+    storeName: 'Sarpsborg, Borg',
+    displayName: 'Sarpsborg, Borg',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'drammen': {
+    catalogId: 'vp_drammen',
+    storeName: 'Drammen CC',
+    displayName: 'Drammen CC',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'alna': {
+    catalogId: 'vp_alna',
+    storeName: 'Oslo, Alna',
+    displayName: 'Oslo, Alna',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'ski': {
+    catalogId: 'vp_ski',
+    storeName: 'Ski',
+    displayName: 'Ski',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'arna': {
+    catalogId: 'vp_arna',
+    storeName: 'Bergen, Arna',
+    displayName: 'Bergen, Arna',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'asker': {
+    catalogId: 'vp_asker',
+    storeName: 'Asker',
+    displayName: 'Asker',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'lillehammer': {
+    catalogId: 'vp_lillehammer',
+    storeName: 'Lillehammer',
+    displayName: 'Lillehammer',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -154,14 +203,19 @@ const AVAILABLE_STORES = {
 
 const beerStores = [
   'bystasjonen',
+  'kvadrat',
+  'oslostoro',
+  'oslocity',
   'akerbrygge',
+  'drammen',
   'bodo',
   'lillemarkens',
-  'kvadrat',
   'langnes',
   'moa',
   'bankkvartalet',
-  'molde'
+  'molde',
+  'asker',
+  'lillehammer'
 ];
 
 const otherStores = [
@@ -171,9 +225,11 @@ const otherStores = [
   'oslocc',
   'sletten',
   'fyllingsdalen',
-  'oslostoro',
-  'oslocity',
-  'tonsberg'
+  'tonsberg',
+  'sarpsborg',
+  'arna',
+  'ski',
+  'alna'
 ]
 
 module.exports = (app, privateApp) => {
