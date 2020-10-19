@@ -188,6 +188,20 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+  'herbarium': {
+    catalogId: 'vp_herbarium',
+    storeName: 'Stavanger, Herbarium',
+    displayName: 'Stavanger, Herbarium',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'haugesund': {
+    catalogId: 'vp_haugesund',
+    storeName: 'Haugesund',
+    displayName: 'Haugesund',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -230,7 +244,9 @@ const otherStores = [
   'sarpsborg',
   'arna',
   'ski',
-  'alna'
+  'alna',
+  'haugesund',
+  'herbarium'
 ]
 
 module.exports = (app, privateApp) => {
