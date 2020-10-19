@@ -155,12 +155,12 @@ h1
   .product a
     display: grid
     width: 100%
-    grid-gap: 0.1rem
+    grid-gap: 0.2rem
     font-size: 0.16rem
     text-decoration: none
     color: cs_darker
   .added .product a
-    grid-template-columns: 0.25rem auto minmax(min-content, 1.5fr) minmax(min-content, 1fr)
+    grid-template-columns: 0.25rem auto max-content max-content
   .removed .product a
     grid-template-columns: 1fr
     
@@ -172,9 +172,16 @@ h1
   .product-price
     align-self: center
     justify-self: right
-    grid-column: 3/5
+    grid-column: 3/4
     &:after
       content: "kr"
+
+  .product-ut
+    align-self: center
+    justify-self: right
+    grid-column: 4/5
+    &:hover
+      text-decoration: underline
 
   .product-misc
     justify-self: right

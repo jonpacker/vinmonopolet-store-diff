@@ -3,6 +3,7 @@ const Pug = require('koa-pug');
 const Router = require('koa-router');
 const redis = require('./lib/redis')();
 const moment = require('moment-timezone');
+const millify = require('millify').default
 moment.locale('nb');
 const dev = process.env.NODE_ENV == 'development';
 
@@ -19,7 +20,8 @@ const pug = new Pug({
   noCache: dev,
   locals: {
     siteTitle: 'Vinmonopolet Differ',
-    moment
+    moment,
+    millify
   }
 });
 

@@ -10,7 +10,8 @@ const AVAILABLE_STORES = {
     storeName: 'Bergen, Bergen Storsenter', 
     displayName: 'Vinmonopolet Bystasjonen',
     module: 'vinmonopolet', 
-    productType: 'BEER' 
+    productType: 'BEER',
+    vintappd: true
   },
   'akerbrygge': {
     catalogId: 'vp_akerbrygge',
