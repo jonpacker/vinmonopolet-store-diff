@@ -2,6 +2,7 @@ const getDiff = require('../lib/get_product_diff');
 const getStock = require('../lib/get_store_stock');
 const Feed = require('feed');
 const {runDiff} = require('../lib/diff_product_list');
+const {applyVintappdToDiffs} = require('../lib/add_vintappd_metadata')
 const lrj = require('../lib/long_running_jobs');
 
 const AVAILABLE_STORES = {
@@ -371,7 +372,8 @@ module.exports = (app, privateApp) => {
   
   app.router.get('/diff/:store', async ctx => {
     ctx.state.storeSettings = AVAILABLE_STORES[ctx.params.store];
-    ctx.state.diffs = await getDiff(app, ctx.state.storeSettings.catalogId);
+    const diffs = await getDiff(app, ctx.state.storeSettings.catalogId);
+    ctx.state.diffs = await applyVintappdToDiffs(diffs)
     ctx.render('diff');
   });
 

@@ -15,6 +15,11 @@ block content
               a(href=add.value.link)
                 .stock-count= add.value.stock
                 .product-name= add.value.name
+                if add.value.bid
+                  - const count = millify(add.value.ratingCount, {precision: 0})
+                  .product-ut(data-ut-link=`https://untappd.com/b/_/${add.value.bid}`) UT: #{add.value.rating.toFixed(2)} (#{count})
+                else
+                  .product-ut
                 if add.value.price
                   .product-price= add.value.price
                 else if add.value.stockStatus || add.value.productCategory
@@ -22,11 +27,6 @@ block content
                     .product-misc #{add.value.stockStatus}  
                   if add.value.productCategory
                     .product-misc #{add.value.productCategory}  
-                if add.value.bid
-                  - const count = millify(add.value.ratingCount, {precision: 0})
-                  .product-ut(data-ut-link=`https://untappd.com/b/_/${add.value.bid}`) UT: #{add.value.rating.toFixed(2)} (#{count})
-                else
-                  .product-ut
 
       if diff.removed.length > 0
         h3.removed-header Gikk tom for #{diff.removed.length}
