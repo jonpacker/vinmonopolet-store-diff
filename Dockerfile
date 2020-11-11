@@ -18,7 +18,7 @@ RUN sed -i 's/^\(daemonize no\)$/daemonize yes/' /etc/redis/redis.conf
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-COPY ./package.json ./package-lock.lock /usr/src/app/
+COPY ./package.json ./package-lock.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app
 EXPOSE 10005 10004
