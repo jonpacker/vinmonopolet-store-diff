@@ -372,7 +372,7 @@ module.exports = (app, privateApp) => {
   
   app.router.get('/diff/:store', async ctx => {
     ctx.state.storeSettings = AVAILABLE_STORES[ctx.params.store];
-    const diffs = await getDiff(app, ctx.state.storeSettings.catalogId);
+    const diffs = await getDiff(app, ctx.state.storeSettings.catalogId, 20);
     ctx.state.diffs = await applyVintappdToDiffs(diffs)
     ctx.render('diff');
   });
