@@ -203,6 +203,20 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+  'kopervik': {
+    catalogId: 'vp_kopervik',
+    storeName: 'Karmøy, Kopervik',
+    displayName: 'Karmøy, Kopervik',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'karmoyoasen': {
+    catalogId: 'vp_karmoyoasen',
+    storeName: 'Karmøy, Oasen',
+    displayName: 'Karmøy, Oasen',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -247,7 +261,9 @@ const otherStores = [
   'ski',
   'alna',
   'haugesund',
-  'herbarium'
+  'herbarium',
+  'kopervik',
+  'karmoyoasen'
 ]
 
 module.exports = (app, privateApp) => {
@@ -380,6 +396,7 @@ module.exports = (app, privateApp) => {
   app.router.get('/diff/:store/json', async ctx => {
     const storeSettings = AVAILABLE_STORES[ctx.params.store];
     const diffs = await getDiff(app, storeSettings.catalogId);
+    ctx.state.diffs = await applyVintappdToDiffs(diffs)
     ctx.body = JSON.stringify(diffs);
   });
   
