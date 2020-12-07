@@ -217,6 +217,20 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+  'sandefjord': {
+    catalogId: 'vp_sandefjord',
+    storeName: 'Sandefjord',
+    displayName: 'Sandefjord',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
+  'larvik': {
+    catalogId: 'vp_larvik',
+    storeName: 'Larvik',
+    displayName: 'Larvik',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -263,7 +277,9 @@ const otherStores = [
   'haugesund',
   'herbarium',
   'kopervik',
-  'karmoyoasen'
+  'karmoyoasen',
+  'larvik',
+  'sandefjord'
 ]
 
 module.exports = (app, privateApp) => {
