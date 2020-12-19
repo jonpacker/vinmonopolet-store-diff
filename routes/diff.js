@@ -231,6 +231,13 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+  'kristiansund': {
+    catalogId: 'vp_kristiansund',
+    storeName: 'Kristansund N.',
+    displayName: 'Kristiansund',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -279,7 +286,8 @@ const otherStores = [
   'kopervik',
   'karmoyoasen',
   'larvik',
-  'sandefjord'
+  'sandefjord',
+  'kristiansund'
 ]
 
 module.exports = (app, privateApp) => {
