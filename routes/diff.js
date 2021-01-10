@@ -2,7 +2,7 @@ const getDiff = require('../lib/get_product_diff');
 const getStock = require('../lib/get_store_stock');
 const Feed = require('feed');
 const {runDiff} = require('../lib/diff_product_list');
-const {applyVintappdToDiffs} = require('../lib/add_vintappd_metadata')
+const {applyVintappdToDiffs, applyVintappdToProductList} = require('../lib/add_vintappd_metadata')
 const lrj = require('../lib/long_running_jobs');
 
 const AVAILABLE_STORES = {
@@ -359,7 +359,9 @@ module.exports = (app, privateApp) => {
   app.router.get('/stock/:store', async ctx => {
     ctx.state.storeSettings = AVAILABLE_STORES[ctx.params.store];
     ctx.state.stock = await getStock(app, ctx.state.storeSettings);
-    ctx.render('stock');
+    ctx.state.stock = await applyVintappdToProductList(ctx.state.stock, !!ctx.query.clean)
+    if (ctx.query.clean) ctx.redirect(ctx.path)
+    else ctx.render('stock');
   });
 
   app.router.post('/diff/:store/add_slack_webhook', async ctx => {

@@ -33,6 +33,6 @@
     "request-promise-native": "^1.0.5",
     "stylus": "^0.54.5",
     "underscore": "^1.8.3",
-    "vinmonopolet": "^5.0.0"
+    "vinmonopolet": "^5.1.0"
   }
 }

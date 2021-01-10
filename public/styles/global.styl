@@ -346,3 +346,22 @@ table
       padding: 0.01rem 0.04rem
     tr:nth-child(odd)
       background-color: rgba(white, 35%)
+
+
+@keyframes rotate
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
+
+.refresh-rating
+  background-color: transparent
+  border: none
+  cursor: pointer
+
+  &.loading img
+    animation: rotate 1s linear infinite both
+
+  img
+    width: 12px
+    height: 12px

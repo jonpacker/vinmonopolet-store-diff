@@ -9,17 +9,30 @@ block content
         th Product Name
         th Price
         th Stock Status
-        th Product Category
+        th Category
+        th Style
+        th UT Rating
     tbody
       - const prods = Object.values(stock);
       each product in stock
         tr
           td= product.code
           td 
-            a(href=`https://vinmonopolet.no/_/p/${product.code}`)= product.name
+            a(href=`https://www.vinmonopolet.no/_/p/${product.code}`)= product.name
           td= product.price
           td= product.stockStatus || product.stock || '-'
-          td= product.productCategory || '-'
+          td= product.category
+          td= product.style
+          td
+            if product.bid
+              a.utrating(href=`https://untappd.com/b/_/${product.bid}`)
+                if product.rating
+                  | #{product.rating}
+                else
+                  | -
+              button.refresh-rating(data-vpcode=product.code)
+                img(src='/img/refresh.svg')
 
     script(type="text/javascript", src="/js/sortable.js")
+    script(type="text/javascript", src="/js/vintappd-refresh.js")
 
