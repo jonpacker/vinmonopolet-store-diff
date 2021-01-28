@@ -368,7 +368,7 @@ module.exports = (app, privateApp) => {
       return
     }
     let stock = await getStock(app, storeSettings);
-    stock = await applyVintappdToProductList(ctx.state.stock, !!ctx.query.clean)
+    stock = await applyVintappdToProductList(stock)
 
     ctx.json = true
     ctx.body = stock
