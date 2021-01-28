@@ -28,10 +28,10 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   }, 
-  'bankkvartalet': {
-    catalogId: 'vp_bankkvartalet',
-    storeName: 'Trondheim, Bankkvartalet',
-    displayName: 'Vinmonopolet Bankkvartalet',
+  'trondheimtorg': {
+    catalogId: 'trondheimtorg',
+    storeName: 'Trondheim Torg',
+    displayName: 'Trondheim Torg',
     module: 'vinmonopolet',
     productType: 'BEER'
   }, 
@@ -263,7 +263,7 @@ const beerStores = [
   'lillemarkens',
   'langnes',
   'moa',
-  'bankkvartalet',
+  'trondheimtorg',
   'molde',
   'asker',
   'lillehammer'
