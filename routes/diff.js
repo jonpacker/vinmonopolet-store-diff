@@ -356,6 +356,24 @@ module.exports = (app, privateApp) => {
     ctx.render('index', {beerStores, otherStores, AVAILABLE_STORES});
   });
 
+  app.router.get('/stores.json', async ctx => {
+    ctx.json = true
+    ctx.body = [...beerStores, ...otherStores]
+  })
+
+  app.router.get('/stock/:store/json', async ctx => {
+    const storeSettings = AVAILABLE_STORES[ctx.params.store];
+    if (!storeSettings) {
+      ctx.status = 404
+      return
+    }
+    let stock = await getStock(app, storeSettings);
+    stock = await applyVintappdToProductList(ctx.state.stock, !!ctx.query.clean)
+
+    ctx.json = true
+    ctx.body = stock
+  })
+
   app.router.get('/stock/:store', async ctx => {
     ctx.state.storeSettings = AVAILABLE_STORES[ctx.params.store];
     ctx.state.stock = await getStock(app, ctx.state.storeSettings);
