@@ -234,7 +234,7 @@ const AVAILABLE_STORES = {
   'kristiansund': {
     catalogId: 'vp_kristiansund',
     storeName: 'Kristansund N.',
-    displayName: 'Kristiansund',
+    displayName: 'Kristiansund N.',
     module: 'vinmonopolet',
     productType: 'BEER'
   },
@@ -368,7 +368,7 @@ module.exports = (app, privateApp) => {
       return
     }
     let stock = await getStock(app, storeSettings);
-    stock = await applyVintappdToProductList(stock)
+    stock = await applyVintappdToProductList(stock, undefined, true)
 
     ctx.json = true
     ctx.body = stock
