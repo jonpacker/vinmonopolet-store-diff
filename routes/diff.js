@@ -149,8 +149,8 @@ const AVAILABLE_STORES = {
   },
   'drammen': {
     catalogId: 'vp_drammen',
-    storeName: 'Drammen CC',
-    displayName: 'Drammen CC',
+    storeName: 'Drammen, CC',
+    displayName: 'Drammen, CC',
     module: 'vinmonopolet',
     productType: 'BEER'
   },
@@ -441,6 +441,7 @@ module.exports = (app, privateApp) => {
     const storeSettings = AVAILABLE_STORES[ctx.params.store];
     const diffs = await getDiff(app, storeSettings.catalogId);
     ctx.state.diffs = await applyVintappdToDiffs(diffs)
+    ctx.json = true
     ctx.body = JSON.stringify(diffs);
   });
   
