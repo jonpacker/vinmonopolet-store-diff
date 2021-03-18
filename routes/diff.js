@@ -442,7 +442,7 @@ module.exports = (app, privateApp) => {
     const diffs = await getDiff(app, storeSettings.catalogId);
     ctx.state.diffs = await applyVintappdToDiffs(diffs)
     ctx.json = true
-    ctx.body = JSON.stringify(diffs);
+    ctx.body = diffs;
   });
   
   app.router.get('/diff/:store/feed.xml', async ctx => {
