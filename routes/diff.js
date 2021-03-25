@@ -358,7 +358,7 @@ module.exports = (app, privateApp) => {
 
   app.router.get('/stores.json', async ctx => {
     ctx.json = true
-    ctx.body = [...beerStores, ...otherStores].map(storeKey => AVAILABLE_STORES[storeKey])
+    ctx.body = [...beerStores, ...otherStores].map(storeKey => ({ ...AVAILABLE_STORES[storeKey], storeKey }))
   })
 
   app.router.get('/stock/:store/json', async ctx => {
