@@ -368,7 +368,6 @@ module.exports = (app, privateApp) => {
       return
     }
     let stock = await getStock(app, storeSettings);
-    stock = await applyVintappdToProductList(stock, undefined, true)
 
     ctx.json = true
     ctx.body = stock
