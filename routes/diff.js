@@ -238,6 +238,13 @@ const AVAILABLE_STORES = {
     module: 'vinmonopolet',
     productType: 'BEER'
   },
+  'bekkestua': {
+    catalogId: 'vp_bekkestua',
+    storeName: 'Bærum, Bekkestua',
+    displayName: 'Bærum, Bekkestua',
+    module: 'vinmonopolet',
+    productType: 'BEER'
+  },
   'dmbourbon': { 
     catalogId: 'dm_bourbon',
     displayName: "Dan Murphy's Online Bourbon Selection",
@@ -287,7 +294,8 @@ const otherStores = [
   'karmoyoasen',
   'larvik',
   'sandefjord',
-  'kristiansund'
+  'kristiansund',
+  'bekkestua'
 ]
 
 module.exports = (app, privateApp) => {
