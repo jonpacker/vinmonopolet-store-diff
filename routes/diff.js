@@ -233,7 +233,7 @@ const AVAILABLE_STORES = {
   },
   'kristiansund': {
     catalogId: 'vp_kristiansund',
-    storeName: 'Kristansund N.',
+    storeName: 'Kristiansund N.',
     displayName: 'Kristiansund N.',
     module: 'vinmonopolet',
     productType: 'BEER'
