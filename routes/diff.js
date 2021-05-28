@@ -30,8 +30,8 @@ const AVAILABLE_STORES = {
   }, 
   'trondheimtorg': {
     catalogId: 'trondheimtorg',
-    storeName: 'Trondheim, Torg',
-    displayName: 'Trondheim, Torg',
+    storeName: 'Trondheim, Trondheim Torg',
+    displayName: 'Trondheim, Trondheim Torg',
     module: 'vinmonopolet',
     productType: 'BEER'
   }, 
