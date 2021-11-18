@@ -375,9 +375,9 @@ module.exports = (app, privateApp) => {
       ctx.status = 404
       return
     }
-    let stock = await getStock(app, storeSettings);
+    let stock = await getStock(app, storeSettings, true);
 
-    ctx.json = true
+    ctx.set('Content-Type', 'application/json')
     ctx.body = stock
   })
 
