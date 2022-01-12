@@ -11,6 +11,7 @@ block content
         th Stock Status
         th Category
         th Style
+        th Date Added
         th UT Rating
     tbody
       - const prods = Object.values(stock);
@@ -23,6 +24,7 @@ block content
           td= product.stockStatus || product.stock || '-'
           td= product.category
           td= product.style
+          td= new Date(product.time || 1970).toISOString()
           td
             if product.bid
               a.utrating(href=`https://untappd.com/b/_/${product.bid}`)
