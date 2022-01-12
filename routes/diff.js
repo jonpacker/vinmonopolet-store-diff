@@ -382,7 +382,12 @@ module.exports = (app, privateApp) => {
   })
 
   app.router.get('/stock/:store', async ctx => {
-    ctx.state.storeSettings = AVAILABLE_STORES[ctx.params.store];
+    const storeSettings = AVAILABLE_STORES[ctx.params.store]
+    if (!storeSettings) {
+      ctx.status = 404
+      return
+    }
+    ctx.state.storeSettings = storeSettings;
     ctx.state.stock = await getStock(app, ctx.state.storeSettings);
     ctx.state.stock = await applyVintappdToProductList(ctx.state.stock, !!ctx.query.clean)
     if (ctx.query.clean) ctx.redirect(ctx.path)
