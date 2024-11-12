@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:16-alpine
 RUN \
   cd /tmp && \
   wget http://download.redis.io/redis-stable.tar.gz && \
