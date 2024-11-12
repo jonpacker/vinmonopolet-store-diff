@@ -25,9 +25,9 @@ block content
           td= product.category
           td= product.style
           td= new Date(product.time || 1970).toISOString()
-          td
+          td.vintappd-col(data-vpcode=product.code)
             if product.bid
-              a.utrating(href=`https://untappd.com/b/_/${product.bid}`)
+              a.utrating(href=`https://untappd.com/b/_/${product.bid}`, data-vpcode=product.code)
                 if product.rating
                   | #{product.rating}
                 else
