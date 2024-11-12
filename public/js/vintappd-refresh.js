@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(prompt ? {
-          prompt
+          query: prompt
         } : {})
       })
       const link = await response.json()
