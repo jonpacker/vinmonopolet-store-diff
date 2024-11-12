@@ -34,6 +34,10 @@ block content
                   | -
               button.refresh-rating(data-vpcode=product.code)
                 img(src='/img/refresh.svg')
+            else
+              button.autolink(data-vpcode=product.code)
+                🔗
+
 
     script(type="text/javascript", src="/js/sortable.js")
     script(type="text/javascript", src="/js/vintappd-refresh.js")
