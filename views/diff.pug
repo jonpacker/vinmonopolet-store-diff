@@ -16,7 +16,7 @@ block content
                 .stock-count= add.value.stock
                 .product-name= add.value.name
                 if add.value.bid
-                  - const count = millify(add.value.ratingCount, {precision: 0})
+                  - const count = add.value.ratingCount ? millify(add.value.ratingCount, {precision: 0}) : 0
                   .product-ut(data-ut-link=`https://untappd.com/b/_/${add.value.bid}`) UT: #{add.value.rating.toFixed(2)} (#{count})
                 else
                   .product-ut
