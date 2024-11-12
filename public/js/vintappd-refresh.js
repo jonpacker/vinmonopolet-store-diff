@@ -14,9 +14,28 @@ document.addEventListener('DOMContentLoaded', function () {
     button.addEventListener('click', async function (event) {
       event.preventDefault()
       const vpcode = button.dataset.vpcode
+      const promptElement = button.previousElementSibling
+      const prompt = promptElement.value
       button.classList.add('loading')
-      await fetch(`https://vintappd.jonpacker.com/vp/${vpcode}/autolink`, { method: 'POST' })
+      await fetch(`https://vintappd.jonpacker.com/vp/autolink/${vpcode}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(prompt ? {
+          prompt
+        } : {})
+      })
       document.location = document.location + '?clean=1'
     })
   }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'p') {
+      const autolinkContainer = document.querySelectorAll('.autolink-container')
+      for (const cont of autolinkContainer) {
+        cont.style.display = 'block'
+      }
+    }
+  })
 })
